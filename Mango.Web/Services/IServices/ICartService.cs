@@ -10,5 +10,6 @@ namespace Mango.Web.Services.IServices
         Task<T> RemoveFromCartIdAsync<T>(int cartDetailsId, string token = null);
         Task<T> ApplyCoupon<T>(CartDto cartDto, string token = null);
         Task<T> RemoveCoupon<T>(string UserId, string token = null);
+        Task<T> Checkout<T>(CartHeaderDto cartHeader, string token = null);
     }
 }
