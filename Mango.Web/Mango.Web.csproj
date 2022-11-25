@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Bootstrap.v3.Datetimepicker" Version="4.17.49" />
+    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.8" />
