@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Mango.OrderProcessor": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7125",
+      "launchBrowser": false
+    }
+  }
+}

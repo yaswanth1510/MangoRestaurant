@@ -1,8 +1,9 @@
 ﻿using System.Text;
 using Azure.Messaging.ServiceBus;
+using Mango.MessageBus;
 using Newtonsoft.Json;
 
-namespace Mango.MessageBus
+namespace MessageBus
 {
     public class AzureServiceMessageBus : IMessageBus
     {
