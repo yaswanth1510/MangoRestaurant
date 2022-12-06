@@ -51,7 +51,7 @@ namespace DBAcccessProcessor.Services
                         ProductId = items.ProductId,
                         Count = items.Count,
                         ProductName = items.Product.Name,
-                        Price = items.Product.Price
+                        Price = items.Product.Price,
                     };
                     orderHeader.CartTotalItems += items.Count;
                     orderHeader.OrderDetails.Add(orderDetails);
@@ -59,7 +59,7 @@ namespace DBAcccessProcessor.Services
 
                 try
                 {
-                    await _orderRepository.AddOrder(orderHeader);
+                    var result = await _orderRepository.AddOrder(orderHeader);
                 }
                 catch (Exception e)
                 {

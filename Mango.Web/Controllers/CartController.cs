@@ -35,7 +35,8 @@ namespace Mango.Web.Controllers
             {
                 return RedirectToAction(nameof(CartIndex));
             }
-            return View();
+
+            return RedirectToAction(nameof(CartIndex));
         }
 
         [HttpPost]
@@ -50,7 +51,7 @@ namespace Mango.Web.Controllers
             {
                 return RedirectToAction(nameof(CartIndex));
             }
-            return View();
+            return RedirectToAction(nameof(CartIndex));
         }
 
         public async Task<IActionResult> Remove(int cartDetailsId)
@@ -63,7 +64,7 @@ namespace Mango.Web.Controllers
             {
                 return RedirectToAction(nameof(CartIndex));
             }
-            return View();
+            return RedirectToAction(nameof(CartIndex));
         }
 
        

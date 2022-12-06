@@ -1,7 +1,11 @@
-﻿namespace DBAcccessProcessor.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DBAcccessProcessor.Models
 {
     public class OrderHeader
     {
+        [Key]
         public int OrderHeaderId { get; set; }
         public string UserId { get; set; }
         public string CouponCode { get; set; }

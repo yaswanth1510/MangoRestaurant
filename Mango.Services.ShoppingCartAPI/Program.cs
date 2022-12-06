@@ -1,8 +1,11 @@
 using AutoMapper;
 using Mango.MessageBus;
-using Mango.Services.ShoppingCartAPI;
-using Mango.Services.ShoppingCartAPI.DbContexts;
-using Mango.Services.ShoppingCartAPI.Repository;
+using Mango.Services.ShoppingCartAPI.Domain;
+using Mango.Services.ShoppingCartAPI.Domain.Behaviors;
+using Mango.Services.ShoppingCartAPI.Domain.Interface;
+using Mango.Services.ShoppingCartAPI.Infrastructure.DbContexts;
+using Mango.Services.ShoppingCartAPI.Infrastructure.Repository;
+using MediatR;
 using MessageBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,12 +15,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddLogging();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.EnableSensitiveDataLogging();
+});
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddTransient(typeof(ICartRepository<>), typeof(CartRepository<>));
+builder.Services.AddMediatR(typeof(ConfigureServices).Assembly);
 builder.Services.AddSingleton<IMessageBus, AzureServiceMessageBus>();
+builder.Services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 builder.Services.AddControllers();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
